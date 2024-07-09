@@ -1,0 +1,109 @@
+<ng-template #contentEditNews let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit News</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" (ngSubmit)="editNews()">
+
+      <div class="form-group">
+        <label for="id">Id: </label>
+        <div class="input-group">
+          <input id="id" formControlName="id">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Title: </label>
+        <div class="input-group">
+          <input id="title" type="text" formControlName="title">
+        </div>
+        <div *ngIf="editFormControl['title'].invalid && (editFormControl['title'].dirty || editFormControl['title'].touched)">
+        <span class="text-danger" *ngIf="(editFormControl['title'].errors?.['required'])">
+          Title is required
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="url">Url: </label>
+        <div class="input-group">
+          <input id="url" type="text" formControlName="url">
+        </div>
+        <div *ngIf="editFormControl['url'].invalid && (editFormControl['url'].dirty || editFormControl['url'].touched)">
+        <span class="text-danger" *ngIf="(editFormControl['url'].errors?.['required'])">
+          Url is required
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="summary">Summary: </label>
+        <div class="input-group">
+          <input id="summary" type="text" formControlName="summary">
+        </div>
+        <div *ngIf="editFormControl['summary'].invalid && (editFormControl['summary'].dirty || editFormControl['summary'].touched)">
+        <span class="text-danger" *ngIf="(editFormControl['summary'].errors?.['required'])">
+          Summary is required
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="image_url">Image Url: </label>
+        <div class="input-group">
+          <input id="image_url" type="text" formControlName="image_url">
+        </div>
+        <div *ngIf="editFormControl['image_url'].invalid && (editFormControl['image_url'].dirty || editFormControl['image_url'].touched)">
+        <span class="text-danger" *ngIf="(editFormControl['image_url'].errors?.['required'])">
+          Image url is required
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="news_site">News Site: </label>
+        <div class="input-group">
+          <input id="news_site" type="text" formControlName="news_site">
+        </div>
+        <div *ngIf="editFormControl['news_site'].invalid && (editFormControl['news_site'].dirty || editFormControl['news_site'].touched)">
+        <span class="text-danger" *ngIf="(editFormControl['news_site'].errors?.['required'])">
+          News Site is required
+        </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="published_at">News Published Date: </label>
+        <div class="input-group">
+          <input id="published_at" type="text" formControlName="published_at">
+        </div>
+        <div *ngIf="editFormControl['published_at'].invalid && (editFormControl['published_at'].dirty || editFormControl['published_at'].touched)">
+        <span class="text-danger" *ngIf="(editFormControl['published_at'].errors?.['required'])">
+          News Published Date is required
+        </span>
+        </div>
+      </div>
+
+      <div>
+        <p>Complete the form to enable button.</p>
+        <div class="border text-center">
+          <button id="save-btn" data-dismiss="modal" class="btn btn-info m-1" type="submit"
+                  [disabled]="!editForm.valid">Save News
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Cancel</button>
+  </div>
+</ng-template>
+
+
+<button class="btn btn-sm btn-outline-secondary" (click)="openEdit(contentEditNews)">
+  <i class="fa fa-edit"></i>Edit
+</button>
